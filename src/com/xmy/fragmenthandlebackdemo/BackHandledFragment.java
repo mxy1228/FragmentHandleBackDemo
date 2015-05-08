@@ -9,9 +9,9 @@ public abstract class BackHandledFragment extends Fragment {
 	protected BackHandledInterface mBackHandledInterface;
 	
 	/**
-	 * ËùÓĞ¼Ì³ĞBackHandledFragmentµÄ×ÓÀà¶¼½«ÔÚÕâ¸ö·½·¨ÖĞÊµÏÖÎïÀíBack¼ü°´ÏÂºóµÄÂß¼­
-	 * FragmentActivity²¶×½µ½ÎïÀí·µ»Ø¼üµã»÷ÊÂ¼şºó»áÊ×ÏÈÑ¯ÎÊFragmentÊÇ·ñÏû·Ñ¸ÃÊÂ¼ş
-	 * Èç¹ûÃ»ÓĞFragmentÏûÏ¢Ê±FragmentActivity×Ô¼º²Å»áÏû·Ñ¸ÃÊÂ¼ş
+	 * æ‰€æœ‰ç»§æ‰¿BackHandledFragmentçš„å­ç±»éƒ½å°†åœ¨è¿™ä¸ªæ–¹æ³•ä¸­å®ç°ç‰©ç†Backé”®æŒ‰ä¸‹åçš„é€»è¾‘
+	 * FragmentActivityæ•æ‰åˆ°ç‰©ç†è¿”å›é”®ç‚¹å‡»äº‹ä»¶åä¼šé¦–å…ˆè¯¢é—®Fragmentæ˜¯å¦æ¶ˆè´¹è¯¥äº‹ä»¶
+	 * å¦‚æœæ²¡æœ‰Fragmentæ¶ˆæ¯æ—¶FragmentActivityè‡ªå·±æ‰ä¼šæ¶ˆè´¹è¯¥äº‹ä»¶
 	 */
 	protected abstract boolean onBackPressed();
 	
@@ -28,8 +28,17 @@ public abstract class BackHandledFragment extends Fragment {
 	@Override
 	public void onStart() {
 		super.onStart();
-		//¸æËßFragmentActivity£¬µ±Ç°FragmentÔÚÕ»¶¥
+		//å‘Šè¯‰FragmentActivityï¼Œå½“å‰Fragmentåœ¨æ ˆé¡¶
 		mBackHandledInterface.setSelectedFragment(this);
+	}
+	
+	/**
+	 * å‡ºé˜Ÿ
+	 **/
+	@Override
+	public void onStop(){
+		super.onStop();
+		mBackHandledInterface.popBackSelectedFragment(this);
 	}
 	
 }
