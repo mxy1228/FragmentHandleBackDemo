@@ -13,6 +13,7 @@ import android.widget.Button;
 public class MainActivity extends FragmentActivity implements BackHandledInterface{
 
 	private BackHandledFragment mBackHandedFragment;
+	private List<BackHandledFragment> mBackHandedList=new ArrayList<BackHandledFragment>();
 	private boolean hadIntercept;
 	
 	private Button mBtn;
@@ -57,7 +58,18 @@ public class MainActivity extends FragmentActivity implements BackHandledInterfa
 
 	@Override
 	public void setSelectedFragment(BackHandledFragment selectedFragment) {
+		mBackHandedList.add(selectedFragment);
 		this.mBackHandedFragment = selectedFragment;
+	}
+	
+	@Override
+	public void popBackSelectedFragment(BackHandledFragment selectedFragment) {
+		mBackHandedList.remove(selectedFragment);
+		int size=mBackHandedList.size();
+		if(size>0){
+		    this.mBackHandedFragment = mBackHandedList.get(size-1);
+		}
+		
 	}
 	
 	@Override
